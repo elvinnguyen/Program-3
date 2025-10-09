@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Enemy
+  - Mario
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -40,6 +43,21 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2529196205
+    locked: 0
+  - name: Player
+    uniqueID: 304517571
+    locked: 0
+  - name: Ground
+    uniqueID: 2561895653
+    locked: 0
+  - name: Enemy
+    uniqueID: 1079582445
+    locked: 0
+  - name: Obstacle
+    uniqueID: 1628864533
     locked: 0
   m_RenderingLayers:
   - Default

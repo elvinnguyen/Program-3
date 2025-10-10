@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     private float walkSpeed = 30f; // Mario walk speed
     private float jumpSpeed = 20f; // Mario jump speed
     private bool isFacingRight = true; // Boolean for facing right
-
+    public AudioSource coinAudioSource; // Coin collecting audio source
+    public HudManager hud; // Get HUD
     [SerializeField] private Rigidbody2D rb; // Initialize rigidbody2d
     [SerializeField] private SpriteRenderer sr; // Initialize sprite rendered
     [SerializeField] private Transform groundCheck; // Initialize ground check
@@ -22,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
         // Get sr
         sr = GetComponent<SpriteRenderer>();
+
+        // Refresh HUD
+        hud.Refresh();
 
     }
 
@@ -75,6 +79,20 @@ public class PlayerController : MonoBehaviour
         {
             // Game over
             print("Game Over");
+        } else if (collider.gameObject.tag == "Coin")
+        {
+            // print("Collecting coin...");
+
+            GameManager.instance.IncreaseScore(1);
+
+            hud.Refresh();
+
+            coinAudioSource.Play();
+
+            Destroy(collider.gameObject);
+        } else if (collider.gameObject.tag == "Goal")
+        {
+            print("Goal");
         }
     }
 }

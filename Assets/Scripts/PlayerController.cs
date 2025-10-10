@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private float horizontal; 
     private float walkSpeed = 30f; // Mario walk speed
-    private float jumpSpeed = 20f; // Mario jump speed
+    private float jumpSpeed = 30f; // Mario jump speed
     private bool isFacingRight = true; // Boolean for facing right
     public AudioSource coinAudioSource; // Coin collecting audio source
     public HudManager hud; // Get HUD
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     // Check if Mario is on ground
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, 1.5f, groundLayer);
     }
 
     // Flip Mario to face left or face right

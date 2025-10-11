@@ -6,7 +6,7 @@ using UnityEngine;
 public class GoombaController : MonoBehaviour
 {
     private float horizontal; 
-    private float speed = 2f; // Speed of goomba
+    private float speed = 4f; // Speed of goomba
     private float direction = -1f; // Set direction 
     Collider2D coll; // To keep the collider object
     Vector2 initialPosition;
@@ -48,6 +48,9 @@ public class GoombaController : MonoBehaviour
     {
         // Switch directions upon collision
         if (collider.gameObject.tag == "Obstacle")
+        {
+            direction *= -1;
+        } else if (collider.gameObject.tag == "Enemy")
         {
             direction *= -1;
         }

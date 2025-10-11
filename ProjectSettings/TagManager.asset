@@ -8,6 +8,7 @@ TagManager:
   - Mario
   - Obstacle
   - Coin
+  - EnemyHead
   layers:
   - Default
   - TransparentFX

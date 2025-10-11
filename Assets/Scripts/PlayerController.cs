@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour
     private float jumpSpeed = 30f; // Mario jump speed
     private bool isFacingRight = true; // Boolean for facing right
     public AudioSource coinAudioSource; // Coin collecting audio source
+    public AudioSource jumpAudioSource; // Jumping audio source
     public HudManager hud; // Get HUD
     [SerializeField] private Rigidbody2D rb; // Initialize rigidbody2d
     [SerializeField] private SpriteRenderer sr; // Initialize sprite rendered
     [SerializeField] private Transform groundCheck; // Initialize ground check
     [SerializeField] private LayerMask groundLayer; // Initialize ground layer
+    [SerializeField] private LayerMask deathCheck;
     
     void Start()
     {
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
         // Jump if on the ground
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
+            jumpAudioSource.Play();
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpSpeed);
         }
 

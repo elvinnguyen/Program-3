@@ -6,6 +6,7 @@ using UnityEngine;
 public class DeathCheck : MonoBehaviour
 {
     [SerializeField] float bounceSpeed = 12f;
+    public AudioSource stompAudioSource;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -31,9 +32,11 @@ public class DeathCheck : MonoBehaviour
         var enemyRoot = GetComponentInParent<GoombaController>();
         if (enemyRoot != null)
         {
-            Destroy(enemyRoot.gameObject);
+            AudioSource.PlayClipAtPoint(stompAudioSource.clip, transform.position, stompAudioSource.volume);
+            Destroy(enemyRoot.gameObject);        
         } else
         {
+            stompAudioSource.Play();
             Destroy(transform.parent.gameObject);
         }
     }

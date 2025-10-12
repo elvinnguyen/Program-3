@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true; // Boolean for facing right
     public AudioSource coinAudioSource; // Coin collecting audio source
     public AudioSource jumpAudioSource; // Jumping audio source
+    public AudioSource marioDeathAudioSource; // Mario death audio source
     public HudManager hud; // Get HUD
     [SerializeField] private Rigidbody2D rb; // Initialize rigidbody2d
     [SerializeField] private SpriteRenderer sr; // Initialize sprite rendered
@@ -78,14 +79,15 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collider)
     {
         // End game when colliding with enemy
-        if (collider.gameObject.tag == "Enemy")
+        if (collider.gameObject.CompareTag("Enemy"))
         {
+            //marioDeathAudioSource.Play();
+
             // Game over
             print("Game Over");
-        } else if (collider.gameObject.tag == "Coin")
-        {
-            // print("Collecting coin...");
 
+        } else if (collider.gameObject.CompareTag("Coin"))
+        {
             GameManager.instance.IncreaseScore(1);
 
             hud.Refresh();
@@ -93,6 +95,7 @@ public class PlayerController : MonoBehaviour
             coinAudioSource.Play();
 
             Destroy(collider.gameObject);
+
         } else if (collider.gameObject.tag == "Goal")
         {
             print("Goal");

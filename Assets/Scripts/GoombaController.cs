@@ -59,25 +59,25 @@ public class GoombaController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.CompareTag("Mario"))
-        {
-            var rb = collider.attachedRigidbody;
-
-            // Bounce Mario up
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, bounceSpeed);
+    // private void OnTriggerEnter2D(Collider2D collider)
+    //{
+    //    if (collider.CompareTag("Mario"))
+    //    {
+    //        var rb = collider.attachedRigidbody;
+    //
+    //        // Bounce Mario up
+    //        rb.linearVelocity = new Vector2(rb.linearVelocity.x, bounceSpeed);
 
             // Play Mario death sound
-            marioDeathAudioSource.Play();
+    //        marioDeathAudioSource.Play();
 
-            // Trigger Mario death
-            collider.GetComponent<PlayerController>()?.Die();
+    //        // Trigger Mario death
+    //        collider.GetComponent<PlayerController>()?.Die();
 
             // Trigger game over
-            GameManager.instance.GameOver();
-        }
+    //        GameManager.instance.GameOver();
+    //    }
     }
 
 
-}
+

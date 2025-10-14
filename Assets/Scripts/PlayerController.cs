@@ -110,6 +110,6 @@ public class PlayerController : MonoBehaviour
 
     public void DisableControl()
     {
-        //enabled = false;
+        enabled = false;
     }
 }

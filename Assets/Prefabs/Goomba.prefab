@@ -188,7 +188,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  bounceSpeed: 30
+  bounceSpeed: 16
   marioDeathAudioSource: {fileID: 3668009997730684997}
 --- !u!82 &3668009997730684997
 AudioSource:
@@ -519,7 +519,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8557401685574371331}
   - component: {fileID: 7453163227265794088}
-  - component: {fileID: 5844136739677671670}
   - component: {fileID: 2638033704754616987}
   m_Layer: 0
   m_Name: Game Over Check
@@ -589,20 +588,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.9, y: 2.1}
   m_EdgeRadius: 0
---- !u!114 &5844136739677671670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4909374224894005962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 181e5081a4dca4cadb52607cb40c9b41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameOverCheck
-  bounceSpeed: 16
-  marioDeathAudioSource: {fileID: 2638033704754616987}
 --- !u!82 &2638033704754616987
 AudioSource:
   m_ObjectHideFlags: 0

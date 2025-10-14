@@ -14,7 +14,7 @@ public class GoombaController : MonoBehaviour
     [SerializeField] private SpriteRenderer sr; // Initialize sprite rendered
     [SerializeField] private Transform groundCheck; // Initialize ground check
     [SerializeField] private LayerMask groundLayer; // Initialize ground layer
-    [SerializeField] float bounceSpeed = 30f;
+    [SerializeField] float bounceSpeed = 16f;
     public AudioSource marioDeathAudioSource; // Mario death audio source
 
     void Start()

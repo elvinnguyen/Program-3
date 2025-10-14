@@ -6,7 +6,7 @@ using UnityEngine;
 public class DeathCheck : MonoBehaviour
 {
     [SerializeField] float bounceSpeed = 12f;
-    public AudioSource stompAudioSource;
+    public AudioSource stompAudioSource; 
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -35,6 +35,7 @@ public class DeathCheck : MonoBehaviour
             Destroy(enemyRoot.gameObject);        
         } else
         {
+            stompAudioSource.volume = 1.0f;
             stompAudioSource.Play();
             Destroy(transform.parent.gameObject);
         }

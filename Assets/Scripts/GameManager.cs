@@ -43,8 +43,6 @@ public class GameManager : MonoBehaviour
 
         isGameOver = true;
 
-        //Time.timeScale = 0f;
-
         GameOverRoutine();
     }
 
@@ -52,6 +50,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
 
+        Time.timeScale = 0f;
         SceneManager.LoadScene("Game Over");
     }
 }

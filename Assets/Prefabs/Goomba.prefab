@@ -601,7 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181e5081a4dca4cadb52607cb40c9b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOverCheck
-  bounceSpeed: 21
+  bounceSpeed: 16
   marioDeathAudioSource: {fileID: 2638033704754616987}
 --- !u!82 &2638033704754616987
 AudioSource:

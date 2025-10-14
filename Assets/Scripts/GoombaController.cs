@@ -65,10 +65,17 @@ public class GoombaController : MonoBehaviour
         {
             var rb = collider.attachedRigidbody;
 
-            // side hit → die immediately
+            // Bounce Mario up
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, bounceSpeed);
+
+            // Play Mario death sound
             marioDeathAudioSource.Play();
+
+            // Trigger Mario death
             collider.GetComponent<PlayerController>()?.Die();
+
+            // Trigger game over
+            GameManager.instance.GameOver();
         }
     }
 

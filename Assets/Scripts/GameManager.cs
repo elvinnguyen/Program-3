@@ -43,12 +43,12 @@ public class GameManager : MonoBehaviour
 
         isGameOver = true;
 
-        GameOverRoutine();
+        StartCoroutine(GameOverRoutine());
     }
 
     private IEnumerator GameOverRoutine()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(4.0f);
 
         Time.timeScale = 0f;
         SceneManager.LoadScene("Game Over");

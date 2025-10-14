@@ -55,29 +55,20 @@ public class GoombaController : MonoBehaviour
         else if (collision.gameObject.tag == "Enemy")
         {
             direction *= -1;
-        }
-
-        // Reverse direction when hitting wall/enemy
-        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Enemy"))
+        } else if (collision.gameObject.CompareTag("Mario"))
         {
-        direction *= -1;
-        return;
-        }
+            // Determine where Mario hit the Goomba
+            ContactPoint2D contact = collision.contacts[0];
+            bool hitFromAbove = contact.normal.y < -0.5f;
 
-    if (collision.gameObject.CompareTag("Mario"))
-    {
-        // Determine where Mario hit the Goomba
-        ContactPoint2D contact = collision.contacts[0];
-        bool hitFromAbove = contact.normal.y < -0.5f;
-
-        if (!hitFromAbove)
-        {
-            // Mario hit from side or below → die
-            marioDeathAudioSource.Play();
-            collision.gameObject.GetComponent<PlayerController>()?.Die();
-            GameManager.instance.GameOver();
-        }
-        // If hitFromAbove == true → handled by DeathCheck script, so do nothing
+            if (!hitFromAbove)
+            {
+                // Mario hit from side or below → die
+                marioDeathAudioSource.Play();
+                collision.gameObject.GetComponent<PlayerController>()?.Die();
+                GameManager.instance.GameOver();
+            }
+            // If hitFromAbove == true → handled by DeathCheck script, so do nothing
         }
     }
 }

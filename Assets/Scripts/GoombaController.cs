@@ -45,7 +45,6 @@ public class GoombaController : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    // Detect collision 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Switch directions upon collision
@@ -57,27 +56,31 @@ public class GoombaController : MonoBehaviour
         {
             direction *= -1;
         }
+        
+    // Reverse direction when hitting wall/enemy
+    if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Enemy"))
+    {
+        direction *= -1;
+        return;
     }
 
-    // private void OnTriggerEnter2D(Collider2D collider)
-    //{
-    //    if (collider.CompareTag("Mario"))
-    //    {
-    //        var rb = collider.attachedRigidbody;
-    //
-    //        // Bounce Mario up
-    //        rb.linearVelocity = new Vector2(rb.linearVelocity.x, bounceSpeed);
+    if (collision.gameObject.CompareTag("Mario"))
+    {
+        // Determine where Mario hit the Goomba
+        ContactPoint2D contact = collision.contacts[0];
+        bool hitFromAbove = contact.normal.y < -0.5f;
 
-            // Play Mario death sound
-    //        marioDeathAudioSource.Play();
-
-    //        // Trigger Mario death
-    //        collider.GetComponent<PlayerController>()?.Die();
-
-            // Trigger game over
-    //        GameManager.instance.GameOver();
-    //    }
+        if (!hitFromAbove)
+        {
+            // Mario hit from side or below → die
+            marioDeathAudioSource.Play();
+            collision.gameObject.GetComponent<PlayerController>()?.Die();
+            GameManager.instance.GameOver();
+        }
+        // If hitFromAbove == true → handled by DeathCheck script, so do nothing
+        }
     }
+}
 
 
 

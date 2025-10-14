@@ -56,13 +56,13 @@ public class GoombaController : MonoBehaviour
         {
             direction *= -1;
         }
-        
-    // Reverse direction when hitting wall/enemy
-    if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Enemy"))
-    {
+
+        // Reverse direction when hitting wall/enemy
+        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Enemy"))
+        {
         direction *= -1;
         return;
-    }
+        }
 
     if (collision.gameObject.CompareTag("Mario"))
     {

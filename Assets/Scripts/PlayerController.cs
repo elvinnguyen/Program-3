@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform groundCheck; // Initialize ground check
     [SerializeField] private LayerMask groundLayer; // Initialize ground layer
     [SerializeField] private LayerMask deathCheck;
+    [SerializeField] float deathBounceSpeed = 16f;
     
     void Start()
     {
@@ -105,6 +106,7 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, deathBounceSpeed);
         DisableControl();
     }
 

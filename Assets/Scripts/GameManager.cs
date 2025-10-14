@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null; // Static instance of the Game Manager, can be access from anywhere
     public int score = 0; // Player score
+    bool isGameOver;
 
     void Awake()
     {
@@ -30,5 +32,26 @@ public class GameManager : MonoBehaviour
     {
         score += amount;
         print("New Score: " + score.ToString());
+    }
+
+    public void GameOver()
+    {
+        if (isGameOver)
+        {
+            return;
+        }
+
+        isGameOver = true;
+
+        //Time.timeScale = 0f;
+
+        GameOverRoutine();
+    }
+
+    private IEnumerator GameOverRoutine()
+    {
+        yield return new WaitForSeconds(2.0f);
+
+        SceneManager.LoadScene("Game Over");
     }
 }

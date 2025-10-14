@@ -76,17 +76,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collider)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         // End game when colliding with enemy
-        if (collider.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("EnemySide"))
         {
-            //marioDeathAudioSource.Play();
+            marioDeathAudioSource.Play();
 
             // Game over
             print("Game Over");
-
-        } else if (collider.gameObject.CompareTag("Coin"))
+        }
+        else if (collision.gameObject.CompareTag("Coin"))
         {
             GameManager.instance.IncreaseScore(1);
 
@@ -94,11 +94,30 @@ public class PlayerController : MonoBehaviour
 
             coinAudioSource.Play();
 
-            Destroy(collider.gameObject);
+            Destroy(collision.gameObject);
 
-        } else if (collider.gameObject.tag == "Goal")
+        }
+        else if (collision.gameObject.tag == "Goal")
         {
             print("Goal");
+        }
+    }
+
+    public void Die()
+    {
+        DisableControl();
+    }
+
+    public void DisableControl()
+    {
+        enabled = false;
+
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            //rb.linearVelocity = Vector2.zero;
+            //rb.angularVelocity = 0f;
+            //rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 }

@@ -23,7 +23,6 @@ public class DeathCheck : MonoBehaviour
             return;
         }
 
-
         if (rb != null)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, bounceSpeed);

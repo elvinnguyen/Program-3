@@ -14,6 +14,8 @@ public class GoombaController : MonoBehaviour
     [SerializeField] private SpriteRenderer sr; // Initialize sprite rendered
     [SerializeField] private Transform groundCheck; // Initialize ground check
     [SerializeField] private LayerMask groundLayer; // Initialize ground layer
+    [SerializeField] float bounceSpeed = 30f;
+    public AudioSource marioDeathAudioSource; // Mario death audio source
 
     void Start()
     {
@@ -44,15 +46,31 @@ public class GoombaController : MonoBehaviour
     }
 
     // Detect collision 
-    private void OnCollisionEnter2D(Collision2D collider)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         // Switch directions upon collision
-        if (collider.gameObject.tag == "Obstacle")
+        if (collision.gameObject.tag == "Obstacle")
         {
             direction *= -1;
-        } else if (collider.gameObject.tag == "Enemy")
+        }
+        else if (collision.gameObject.tag == "Enemy")
         {
             direction *= -1;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Mario"))
+        {
+            var rb = collider.attachedRigidbody;
+
+            // side hit → die immediately
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, bounceSpeed);
+            marioDeathAudioSource.Play();
+            collider.GetComponent<PlayerController>()?.Die();
+        }
+    }
+
+
 }

@@ -9,6 +9,7 @@ TagManager:
   - Obstacle
   - Coin
   - EnemyHead
+  - EnemySide
   layers:
   - Default
   - TransparentFX
